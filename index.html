@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Assistance PrepAppAI</title>
+    <style>
+      /* Reset de base */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f6f6f6;
+        color: #333;
+        line-height: 1.6;
+      }
+      header {
+        background-image: linear-gradient(#D38F68, #E3C7A1);
+        color: #fff;
+        padding: 1rem;
+        text-align: center;
+      }
+      nav {
+        background: #333;
+        color: #fff;
+        text-align: center;
+        padding: 0.5rem;
+      }
+      nav a {
+        color: #fff;
+        margin: 0 1rem;
+        text-decoration: none;
+      }
+      img {
+        border-radius: 21px;
+        max-width: 7%;
+        height: auto;
+      }
+      .container {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
+      h1, h2 {
+        margin-bottom: 1rem;
+      }
+      section {
+        margin-bottom: 2rem;
+        background: #fff;
+        padding: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      footer {
+        text-align: center;
+        padding: 1rem;
+        background: #333;
+        color: #fff;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+      }
+      .faq dt {
+        font-weight: bold;
+        margin-top: 1rem;
+      }
+      .faq dd {
+        margin-left: 1rem;
+        margin-bottom: 1rem;
+      }
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+      }
+      .contact-form label {
+        margin-top: 1rem;
+      }
+      .contact-form input, .contact-form textarea {
+        padding: 0.5rem;
+        margin-top: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      .contact-form button {
+        margin-top: 1rem;
+        padding: 0.7rem;
+        background: #996E5B;
+        border: none;
+        color: #fff;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .contact-form button:hover {
+        background: #D38F68;
+      }
+    </style>
+    <!-- Intégration d'EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+      // Initialisation d'EmailJS avec votre User ID
+      (function(){
+        emailjs.init("MOpWMhuXm-3tN8geG");
+      })();
+    </script>
+  </head>
+  <body>
+    <header>
+        <img src="logo.png"/>
+      <h1>Assistance PrepAppAI</h1>
+    </header>
+    <nav>
+      <a href="#faq">FAQ</a>
+      <a href="#guides">Guides</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="container">
+      <section id="faq">
+        <h2>Foire aux Questions</h2>
+        <dl class="faq">
+          <dt>Qu'est-ce que PrepApp ?</dt>
+          <dd>PrepApp est une application qui vous aide à vous préparer aux entretiens d'embauche grâce à des questions ciblées et des conseils pratiques.</dd>
+          <dt>Comment commencer ?</dt>
+          <dd>Suivez l'onboarding intégré à l'appli pour découvrir toutes ses fonctionnalités et commencer à vous entraîner.</dd>
+          <dt>Que faire si j'ai un problème technique ?</dt>
+          <dd>Consultez la section Contact pour obtenir de l'aide de notre support technique.</dd>
+          <dt>Que se passe-t-il après l'essai gratuit ?</dt>
+          <dd>Après 3 jours d'essai gratuit, un abonnement à 0,99€ par mois est proposé pour continuer à utiliser l'app.</dd>
+        </dl>
+      </section>
+      <section id="guides">
+        <h2>Guides et Astuces</h2>
+        <article>
+          <h3>Utilisation de l'application</h3>
+          <p>L'application est organisée autour de plusieurs étapes : l'entrée du poste visé, la pratique des questions d'entretien et l'affichage de conseils. Suivez les instructions pour optimiser votre préparation.</p>
+        </article>
+        <article>
+          <h3>Maximisez votre préparation</h3>
+          <p>Profitez des conseils personnalisés et de l'option de réinitialisation des questions pour tester différentes approches et améliorer votre réponse aux entretiens.</p>
+        </article>
+      </section>
+      <section id="contact">
+        <h2>Contact</h2>
+        <!-- Le formulaire dispose désormais d'un identifiant "contact-form" pour faciliter l'envoi via EmailJS -->
+        <form class="contact-form" id="contact-form">
+          <label for="name">Nom :</label>
+          <input type="text" id="name" name="from_name" required />
+          <label for="email">Email :</label>
+          <input type="email" id="email" name="reply_to" required />
+          <label for="message">Message :</label>
+          <textarea id="message" name="message" rows="4" required></textarea>
+          <button type="submit">Envoyer</button>
+        </form>
+      </section>
+    </div>
+    <footer>
+      <p>&copy; 2025 PrepAppAI. Tous droits réservés.</p>
+    </footer>
+    <script type="text/javascript">
+      window.onload = function() {
+        // Gestionnaire de soumission du formulaire utilisant EmailJS
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+          event.preventDefault(); // Empêche l'envoi classique du formulaire
+          emailjs.sendForm('service_xgm26bw', 'template_twgne7b', this)
+            .then(() => {
+              console.log('SUCESS!');
+            }, (error) => {
+              console.log('FAILED...', error);
+            });
+        });
+      }
+      
+    </script>
+  </body>
+</html>
